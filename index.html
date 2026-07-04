@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python is Nothing but a Game - Learn Python, DSA, Competitive Programming and FastAPI interactively</title>
+  <meta name="description" content="A free, interactive playground to learn Python, Data Structures and Algorithms, Competitive Programming and FastAPI from basics to production. Run real Python in your browser, watch algorithms animate, and edit every lesson yourself with the built-in Dev Tool.">
+  <meta name="theme-color" content="#08090b">
+
+  <meta property="og:title" content="Python is Nothing but a Game">
+  <meta property="og:description" content="Learn Python, DSA, Competitive Programming and FastAPI interactively -- run real Python in your browser, watch algorithms animate, build projects.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B8CFF' stroke-width='2.5'><path d='M8 4 2 12l6 8'/><path d='M16 4l6 8-6 8'/></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* CodeMirror theme tuned to the monochrome palette -- color only where it earns its keep (syntax) */
+    .cm-s-py-dark.CodeMirror { background: var(--bg-1); color: var(--text-0); }
+    .cm-s-py-dark .CodeMirror-gutters { background: var(--bg-1); border: none; }
+    .cm-s-py-dark .CodeMirror-linenumber { color: var(--text-3); }
+    .cm-s-py-dark .cm-keyword { color: var(--accent); font-weight: 600; }
+    .cm-s-py-dark .cm-def { color: var(--text-0); }
+    .cm-s-py-dark .cm-variable { color: var(--text-1); }
+    .cm-s-py-dark .cm-variable-2 { color: var(--text-1); }
+    .cm-s-py-dark .cm-builtin { color: var(--amber); }
+    .cm-s-py-dark .cm-string { color: var(--green); }
+    .cm-s-py-dark .cm-number { color: var(--purple); }
+    .cm-s-py-dark .cm-comment { color: var(--text-3); font-style: italic; }
+    .cm-s-py-dark .cm-operator { color: var(--text-1); }
+    .cm-s-py-dark .cm-property { color: var(--text-0); }
+    .cm-s-py-dark .cm-meta { color: var(--amber); }
+    .cm-s-py-dark .CodeMirror-activeline-background { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+    .cm-s-py-dark .CodeMirror-matchingbracket { color: var(--accent) !important; border-bottom: 1px solid var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="brand" onclick="nav('#/')">
+      <div class="logo" id="brandLogo"></div>
+      <div>
+        <div class="name">Python is <b>a Game</b></div>
+        <div class="tag">PYTHON / DSA / CP / FASTAPI</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a data-section="track" onclick="nav('#/track/python')">Python</a>
+      <a data-section="track" onclick="nav('#/track/dsa')">DSA</a>
+      <a data-section="track" onclick="nav('#/track/cp')">Competitive</a>
+      <a data-section="track" onclick="nav('#/track/fastapi')">FastAPI</a>
+      <a data-section="visualizer" onclick="nav('#/visualizer/sorting')">Visualizers</a>
+      <a data-section="apilab" onclick="nav('#/apilab')">API Lab</a>
+      <a data-section="devtool" onclick="nav('#/devtool')">Dev Tool</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" id="themeBtn" onclick="Theme.toggle()" title="Toggle theme"></button>
+      <button class="btn btn-primary" onclick="nav('#/playground')"><span class="hide-sm">Playground</span></button>
+      <button class="icon-btn hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()" title="Menu"></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="nav('#/')">Home</a>
+    <a data-section="track" onclick="nav('#/track/python')">Python</a>
+    <a data-section="track" onclick="nav('#/track/dsa')">Data Structures and Algorithms</a>
+    <a data-section="track" onclick="nav('#/track/cp')">Competitive Programming</a>
+    <a data-section="track" onclick="nav('#/track/fastapi')">FastAPI and Databases</a>
+    <a data-section="track" onclick="nav('#/track/prod')">Production and DevOps</a>
+    <a data-section="track" onclick="nav('#/track/capstone')">Capstone</a>
+    <a data-section="playground" onclick="nav('#/playground')">Playground</a>
+    <a data-section="visualizer" onclick="nav('#/visualizer/sorting')">Visualizers</a>
+    <a data-section="apilab" onclick="nav('#/apilab')">API Lab</a>
+    <a data-section="devtool" onclick="nav('#/devtool')">Dev Tool</a>
+  </div>
+
+  <main id="app"></main>
+
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/python/python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/matchbrackets.min.js"></script>
+
+  <script src="js/icons.js"></script>
+  <script src="js/data/curriculum.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/visualizers.js"></script>
+  <script src="js/devtool.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
